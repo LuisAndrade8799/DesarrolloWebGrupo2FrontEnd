@@ -16,6 +16,7 @@ export const routes: Routes = [
     {
         path:'estudiante',
         component:EstudianteComponent,
+        children: []
     },
     {
         path:'vicedecano',

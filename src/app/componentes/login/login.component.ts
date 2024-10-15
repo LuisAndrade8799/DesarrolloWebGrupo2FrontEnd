@@ -16,17 +16,31 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
-  logearse: boolean = true;
+  islogearse: boolean = true;
 
   respuesta!: Respuesta;
   router = inject(Router)
   servicio = inject(DatosUsuariosService);
   login!: FormGroup;
+  registro!: FormGroup;
+
   ngOnInit(): void {
     this.login = new FormGroup({
       usuario: new FormControl('',Validators.required),
       contrasenia: new FormControl('',Validators.required)
      });
+     this.registro = new FormGroup({
+      usuario: new FormControl('',Validators.required),
+      contrasenia: new FormControl('',Validators.required),
+      repcontrasenia: new FormControl('',Validators.required),
+      codigo: new FormControl('',Validators.required),
+      paterno: new FormControl('',Validators.required),
+      materno: new FormControl('',Validators.required),
+      nombres: new FormControl('',Validators.required),
+      ingreso: new FormControl('',Validators.required),
+      correo: new FormControl('',Validators.required),
+      plan: new FormControl('',Validators.required)
+     }); 
   }
   
   logear(){
@@ -39,19 +53,24 @@ export class LoginComponent implements OnInit{
       this.servicio.postData(datos).subscribe(
         (data) => {
           this.respuesta = data;
-          this.log();
+          this.logearse();
         }
       )
     }
   }
 
-  log(){
+  logearse(){
     if(this.respuesta.resultado){
       alert("Exito");
-      this.router.navigateByUrl("/estudiante")
+      localStorage.setItem("logeado","true");
+      this.router.navigateByUrl("/estudiante");
     }else{
       alert("Error");
     }
+  }
+
+  registrar(){
+
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="parent">
-    @if (logearse) {
+    @if (islogearse) {
     <div class="container">
         <div class="signin-form">
             <h2>Iniciar Sesión</h2>
@@ -13,7 +13,7 @@
                     <input type="password" id="password" name="password" formControlName="contrasenia" required>
                 </div>
                 <button type="submit" [disabled]="login.invalid">Iniciar Sesión</button>
-                <p><span (click)="logearse = false">Registrase</span></p>
+                <p><span (click)="islogearse = false">Registrase</span></p>
             </form>
         </div>
     </div>
@@ -21,7 +21,7 @@
     <div class="container">
         <div class="signin-form">
             <h2>Registrarse</h2>
-            <form [formGroup]="login" (ngSubmit)="logear()">
+            <form [formGroup]="registro" (ngSubmit)="registrar()">
                 <div class="input-group">
                     <label for="username">Usuario</label>
                     <input type="text" id="username" formControlName="usuario" required>
@@ -32,39 +32,39 @@
                 </div>
                 <div class="input-group">
                     <label for="repy-password">Repetir contraseña</label>
-                    <input type="password" id="repy-password" formControlName="contrasenia" required>
+                    <input type="password" id="repy-password" formControlName="repcontrasenia" required>
                 </div>
                 <div class="input-group">
                     <label for="codigo">Codigo de alumno</label>
-                    <input type="text" id="codigo" formControlName="contrasenia" required>
+                    <input type="text" id="codigo" formControlName="codigo" required>
                 </div>
                 <div class="input-group">
                     <label for="apellido-p">Apellido paterno</label>
-                    <input type="text" id="apellido-p" formControlName="contrasenia" required>
+                    <input type="text" id="apellido-p" formControlName="paterno" required>
                 </div>
                 <div class="input-group">
                     <label for="apellido-m">Apellido materno</label>
-                    <input type="text" id="apellido-m" formControlName="contrasenia" required>
+                    <input type="text" id="apellido-m" formControlName="materno" required>
                 </div>
                 <div class="input-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" formControlName="contrasenia" required>
+                    <input type="text" id="nombre" formControlName="nombres" required>
                 </div>
                 <div class="input-group">
                     <label for="anio">Año de ingreso</label>
-                    <input type="number" id="anio" formControlName="contrasenia" required>
+                    <input type="number" id="anio" formControlName="ingreso" required>
                 </div>
                 <div class="input-group">
                     <label for="correo">Correo institucional</label>
-                    <input type="email" id="correo" formControlName="contrasenia" required>
+                    <input type="email" id="correo" formControlName="correo" required>
                 </div>
                 <div class="input-group">
                     <label for="plan">Plan de estudio</label>
-                    <input type="number" id="plan" formControlName="contrasenia" required>
+                    <input type="number" id="plan" formControlName="plan" required>
                 </div>
                 <button type="submit" [disabled]="login.invalid">Sign In</button>
             </form>
-            <p><span (click)="logearse = true">Iniciar Sesión</span></p>
+            <p><span (click)="islogearse = true">Iniciar Sesión</span></p>
         </div>
     </div>
     }
