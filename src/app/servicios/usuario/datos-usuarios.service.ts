@@ -7,14 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class DatosUsuariosService {
 
-  private apiUrl = 'http://127.0.0.1:5000/api/data'
+  private apiUrl = 'http://127.0.0.1:5000/api'
   private http = inject(HttpClient)
 
   constructor() { }
 
-  postData(datos: any): Observable<any> {
-    return this.http.post(this.apiUrl,datos)
+  login(datos: any): Observable<any> {
+    return this.http.post(this.apiUrl+'/login',datos)
   }
 
+  registro(datos: any): Observable<any> {
+    return this.http.post(this.apiUrl+'/registro',datos)
+  }
 
+  matriculado(datos: any): Observable<any> {
+    return this.http.post(this.apiUrl+'/matriculado',datos)
+  }
 }

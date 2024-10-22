@@ -1,0 +1,56 @@
+
+  /* parent container */
+  main {
+    height: 100%;
+    width: 100%;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* navbar */
+  nav {
+    height: 50px;
+    width: 80%;
+    padding: 2px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+    background-color: rgb(236, 232, 232);
+  }
+  /* Content */
+  
+  nav a {
+    text-decoration: none;
+    color: rgb(95, 100, 100);
+  }
+  
+  /* hover effect */
+  nav a:hover {
+    color: black;
+    transition: all ease 0.5s;
+  }
+  
+  /* Responsive media query */
+  
+  @media only screen and (max-width: 700px) {
+    main {
+      background-color: lightblue;
+    }
+    nav {
+      width: 90%;
+      font-size: 20px;
+    }
+  }
+  
+  @media only screen and (max-width: 500px) {
+      main {
+        background-color: lightblue;
+      }
+      nav {
+        width: 90%;
+        font-size: 16px;
+      }
+    }

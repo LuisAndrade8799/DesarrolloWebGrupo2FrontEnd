@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './componentes/login/login.component';
 import { EstudianteComponent } from './componentes/layout/estudiante/estudiante.component';
 import { VicedecanoComponent } from './componentes/layout/vicedecano/vicedecano.component';
+import { NavEstudianteComponent } from './componentes/layout/nav-estudiante/nav-estudiante.component';
 
 export const routes: Routes = [
     {
@@ -16,7 +17,9 @@ export const routes: Routes = [
     {
         path:'estudiante',
         component:EstudianteComponent,
-        children: []
+        children: [
+            
+        ]
     },
     {
         path:'vicedecano',

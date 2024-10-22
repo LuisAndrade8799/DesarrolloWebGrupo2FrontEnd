@@ -13,18 +13,24 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrl: './estudiante.component.css'
 })
 export class EstudianteComponent implements OnInit{
+  usuario: any;
   router = inject(Router)
   platformId = inject(PLATFORM_ID)   
   ngOnInit(): void {
     if(isPlatformBrowser(this.platformId)){
-        if(localStorage.getItem("logeado") != 'true'){
+        if(sessionStorage.getItem("logeado") != 'true'){
           this.router.navigateByUrl('/login');
+        }
+        let dato = sessionStorage.getItem("usuario");
+        if(dato){
+          this.usuario = JSON.parse(dato);
         }
     }
   }
 
   logout(){
-    localStorage.removeItem("logeado");
+    sessionStorage.removeItem("logeado");
+    sessionStorage.removeItem("usuario");
     this.router.navigateByUrl('/login');
   }
 
