@@ -1,13 +1,25 @@
-<!--parent container -->
-<main>
-    <!-- navbar-->
-    <nav>
-        <!-- content -->
-        <a href="/estudiante">Estudiante</a>
-        <a href="/registrar">Registrar Solicitud</a>
-        <a href="/estado">Estado Solicitud</a>
-        <button (click)="logout()">Cerrar Sesion</button>
-    </nav>
-</main>
-
-<router-outlet/>
+<div class="d-flex vh-100">
+    <div class="d-flex flex-column border">
+        <div class="p-2">Rectificaciones Fisi</div>
+        <hr>
+        <ul class="nav flex-column h-100">
+            <li class="nav-item">
+                <a href="/estudiante" class="nav-link">Estudiante</a>
+            </li>
+            <li class="nav-item ">
+                <a href="/registrar" class="nav-link">Registrar Solicitud</a>
+            </li>
+            <li class="nav-item ">
+                <a href="/estado" class="nav-link">Estado de solicitud</a>
+            </li>
+        </ul>
+        <hr>
+        <div class="align-botton align-self-center">
+            <button type="button" class="btn btn-primary" (click)="logout()">Cerrar Sesión</button>
+        </div>
+        <hr>
+    </div>
+    <div class="w-100">
+    <router-outlet />
+</div>
+</div>

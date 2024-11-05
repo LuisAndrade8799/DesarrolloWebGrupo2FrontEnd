@@ -113,8 +113,9 @@ export class LoginComponent implements OnInit{
           this.isMatriculado = true;
         }else{
           this.isMatriculado = false;
+          alert("¡Alumno no matriculado!")
         }
-        console.log(this.isMatriculado)
+        
       }
     )
   }

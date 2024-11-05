@@ -1,13 +1,18 @@
-<!--parent container -->
-<main>
-    <!-- navbar-->
-    <nav>
-        <!-- content -->
-        <a href="#">Estudiante</a>
-        <a href="#">Registrar Solicitud</a>
-        <a href="#">Estado Solicitud</a>
-        <button (click)="logout()">Cerrar Sesion</button>
-    </nav>
-</main>
-
-<router-outlet/>
+<div class="d-flex flex-row justify-content-center align-items-center w-100 h-100">
+  @if(this.usuario){
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{this.usuario.nombreAlumno}} {{this.usuario.apellidoPaterno}}
+        {{this.usuario.apellidoMaterno}}</h5>
+      <p class="card-text">Codigo alumno: {{this.usuario.codigoAlumno}}</p>
+      <p class="card-text">Año de ingreso: {{this.usuario.anioIngreso}}</p>
+      <p class="card-text">Correo del alumno: {{this.usuario.correoAlumno}}</p>
+      <p class="card-text">Plan: {{this.usuario.codigoPlan}}</p>
+    </div>
+  </div>
+  }@else {
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  }
+</div>

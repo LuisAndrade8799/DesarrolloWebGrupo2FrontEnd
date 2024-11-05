@@ -1,0 +1,156 @@
+<div class="d-flex flex-column h-100">
+    <div class="d-flex flex-row justify-content-center mb-3">
+        <h2>Registro de Rectificación</h2>
+    </div>
+    <!--Formulario-->
+    <div class="container h-100">
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="form-label">Número de Expediente</label>
+            </div>
+            <div class="col-4">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <h2 class="">Cursos</h2>
+        </div>
+        <!--Tabla de cursos-->
+        <div class="row">
+            <table class="table table-bordered table-hover">
+                <thead class="text-center">
+                    <tr>
+                        <th>Codigo de Curso</th>
+                        <th>Nombre de Curso</th>
+                        <th>Profesor</th>
+                        <th>Sección</th>
+                        <th>Horario</th>
+                        <th>Rectificación</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    @for( curso of this.cursos; track curso.codigo){
+                    <tr>
+                        <td>{{curso.codigo}}</td>
+                        <td>{{curso.nombre}}</td>
+                        <td>{{curso.profesor}}</td>
+                        <td>{{curso.seccion}}</td>
+                        <td>{{curso.horario}}</td>
+                        <td>
+                            <input type="checkbox" class="form-check-input" [(ngModel)]="curso.rectificacion"
+                                (change)="actualizarRectificacion()">
+                        </td>
+                    </tr>
+                    }@empty {
+                    <tr>
+                        <td colspan="6">
+                            <div class="spinner-grow me-3 text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow me-3 text-secondary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow me-3 text-success" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow me-3 text-danger" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow me-3 text-warning" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow me-3 text-info" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-dark" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="row mb-3">
+            <h2>Rectificar</h2>
+        </div>
+        <!--Rectificacion-->
+        <div class="row">
+            <table class="table table-bordered table-hover">
+                <thead class="text-center">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Curso</th>
+                        <th>Sección</th>
+                        <th>Cambio</th>
+                        <th>Nueva Sección</th>
+                        <th>Nueva Sección 2</th>
+                        <th>Retiro</th>
+                        <th>Motivo</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    @for(filtrado of this.cursosFiltrados; track filtrado.codigo){
+                    <tr>
+                        <td>{{filtrado.codigo}}</td>
+                        <td>{{filtrado.nombre}}</td>
+                        <td>{{filtrado.seccion}}</td>
+                        <td>
+                            <input type="checkbox" class="form-check-input" [(ngModel)]="filtrado.cambio"
+                                [disabled]="filtrado.retiro">
+                        </td>
+                        <td>
+                            <input class="form-control" [(ngModel)]="filtrado.nuevaSeccion"
+                                [disabled]="!filtrado.cambio">
+
+                        </td>
+                        <td>
+                            <input class="form-control" [(ngModel)]="filtrado.nuevaSeccion2"
+                                [disabled]="!filtrado.cambio">
+
+                        </td>
+                        <td>
+                            <input type="checkbox" class="form-check-input" [(ngModel)]="filtrado.retiro"
+                                [disabled]="filtrado.cambio">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" [(ngModel)]="filtrado.motivo">
+                        </td>
+                    </tr>
+                    }@empty{
+                    <tr>
+                        <td colspan="8">
+                            <div class="spinner-grow text-primary me-3" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-secondary me-3" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow me-3 text-success" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow me-3 text-danger" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow me-3 text-warning" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow me-3 text-info" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-dark" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="row text-center mb-3">
+            <div class="col">
+                <button type="button" (click)="enviarRectificacion()">Enviar Rectificación</button>
+            </div>
+        </div>
+    </div>
+</div>
