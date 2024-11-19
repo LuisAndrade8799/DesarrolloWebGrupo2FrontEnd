@@ -5,6 +5,9 @@ import { VicedecanoComponent } from './componentes/layout/vicedecano/vicedecano.
 import { NavEstudianteComponent } from './componentes/layout/nav-estudiante/nav-estudiante.component';
 import { RegistrarComponent } from './componentes/layout/registrar/registrar.component';
 import { EstadoComponent } from './componentes/layout/estado/estado.component';
+import { NavVicedecanoComponent } from './componentes/layout/nav-vicedecano/nav-vicedecano.component';
+import { AprobarDesaprobarComponent } from './componenter/layout/aprobar-desaprobar/aprobar-desaprobar.component';
+import { DesaprobarComponent } from './componentes/layout/desaprobar/desaprobar.component';
 
 export const routes: Routes = [
     {
@@ -35,7 +38,21 @@ export const routes: Routes = [
         ]
     },
     {
-        path:'vicedecano',
-        component:VicedecanoComponent,
+        path:'',
+        component:NavVicedecanoComponent,
+        children: [
+            {
+                path: 'vicedecano',
+                component: VicedecanoComponent
+            },
+            {
+                path: 'aprobar',
+                component: AprobarDesaprobarComponent
+            },
+            {
+                path: 'desaprobar',
+                component: DesaprobarComponent
+            }
+        ]
     }
 ];

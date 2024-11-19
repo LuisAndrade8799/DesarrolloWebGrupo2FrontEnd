@@ -23,4 +23,20 @@ export class DatosUsuariosService {
   matriculado(datos: any): Observable<any> {
     return this.http.post(this.apiUrl+'/matriculado',datos)
   }
+
+  cursos(datos: any): Observable<any>{
+    return this.http.post(this.apiUrl+'/cursos',datos)
+  }
+
+  rectificar(datos: any): Observable<any>{
+    return this.http.post(this.apiUrl+'/rectificar',datos)
+  }
+
+  ingreso():Observable<any>{
+    return this.http.get(this.apiUrl+'/ingreso')
+  }
+
+  retiro():Observable<any>{
+    return this.http.get(this.apiUrl+'/retiro')
+  }
 }

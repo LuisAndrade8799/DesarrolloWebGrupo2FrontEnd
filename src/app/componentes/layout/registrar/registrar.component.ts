@@ -1,6 +1,8 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DatosUsuariosService } from '../../../servicios/usuario/datos-usuarios.service';
+import { Respuesta } from '../../../modelo/respuesta.model';
 
 @Component({
   selector: 'app-registrar',
@@ -14,22 +16,39 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegistrarComponent implements OnInit{
   cursos: any[] = [];
+  platformId = inject(PLATFORM_ID);
   cursosFiltrados: any[] = [];
+  servicio = inject(DatosUsuariosService)
+  codigo: any;
+  idMatricula: any;
+  expediente = '';
 
   ngOnInit(): void {
-    const datosDesdeBD = [
-      { codigo: 'CS101', nombre: 'Introducción a la Programación', profesor: 'Juan Pérez', seccion: 'A', horario: 'Lunes 10:00 - 12:00' },
-      { codigo: 'CS102', nombre: 'Estructura de Datos', profesor: 'María Gómez', seccion: 'B', horario: 'Martes 14:00 - 16:00' },
-      { codigo: 'CS103', nombre: 'Base de Datos', profesor: 'Carlos Díaz', seccion: 'C', horario: 'Miércoles 08:00 - 10:00' }
-    ];
-    this.cursos = datosDesdeBD.map(curso => ({...curso, rectificacion:false}));
+    if(isPlatformBrowser(this.platformId)){ 
+      let dato = sessionStorage.getItem("usuario");
+      if(dato){
+        this.codigo = JSON.parse(dato).codigoAlumno;
+      }
+      let datos = {
+        "codigo":this.codigo
+      }
+      this.servicio.cursos(datos).subscribe(
+        (data) => {
+          let respuesta = data;
+          this.idMatricula = respuesta.idMatricula;
+          this.cursos = respuesta.objetos.map( (curso: any) => ({...curso,rectificacion:false}))
+        }
+      )
+    }
+  
   }
 
   actualizarFiltrados(){
     this.cursosFiltrados = this.cursos.filter(curso => curso.rectificacion)
-                                      .map(curso => ({
-                                        codigo: curso.codigo,
-                                        nombre: curso.nombre,
+                                      .map(curso => (
+                                        {
+                                        codigo: curso.codigoCurso,
+                                        nombre: curso.nombreCurso,
                                         seccion: curso.seccion,
                                         cambio: false,
                                         nuevaSeccion: '',
@@ -44,11 +63,28 @@ export class RegistrarComponent implements OnInit{
   }
 
   enviarRectificacion(){
-    if(this.cursosFiltrados.length != 0){
-      console.log(this.cursosFiltrados);
+    if(this.expediente != ''){
+      let datos = {
+        "expediente":this.expediente,
+        "codigoAlumno":this.codigo,
+        "idMatricula": this.idMatricula,
+        "rectificar": this.cursosFiltrados
+      }
+      console.log(datos);
+      this.servicio.rectificar(datos).subscribe(
+        (data) => {
+          let respuesta = data;
+          if (respuesta.resultado){
+            alert("Se registro la rectificación de forma exitosa.")
+          }else{
+            alert("Error al registrar la rectificación.")
+          }
+        }
+      )
     }else{
-      console.log("Necesita seleccionar cursos a rectificar.");
+      alert("Llene el campo de expediente.")
     }
+    
   }
 
 }
