@@ -149,6 +149,51 @@
                 </tbody>
             </table>
         </div>
+        <!-- Nueva Sección para Matricularse en un nuevo curso -->
+        <!-- Nueva sección de cursos a agregar -->
+        <div class="row mb-3">
+            <h2>Nuevo Curso</h2>
+        </div>
+        
+        <!-- Tabla para agregar un nuevo curso -->
+        <div class="row">
+            <table class="table table-bordered table-hover">
+                <thead class="text-center">
+                    <tr>
+                        <th>Código</th>
+                        <th>Curso</th>
+                        <th>Sección</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    <tr>
+                        <td><input type="text" class="form-control" [(ngModel)]="nuevoCurso.codigoCurso"></td>
+                        <td><input type="text" class="form-control" [(ngModel)]="nuevoCurso.nombreCurso"></td>
+                        <td><input type="text" class="form-control" [(ngModel)]="nuevoCurso.seccion"></td>
+                        <td>
+                            <button type="button" class="btn btn-primary" (click)="agregarNuevoCurso()">Agregar</button>
+                        </td>
+                    </tr>
+                    <tr *ngFor="let cursoNuevo of cursosNuevos; let i = index">
+                        <td>{{ cursoNuevo.codigoCurso }}</td>
+                        <td>{{ cursoNuevo.nombreCurso }}</td>
+                        <td>{{ cursoNuevo.seccion }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" (click)="eliminarCurso(i)">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="cursosNuevos.length === 0">
+                        <td colspan="4" class="text-center">
+                            <div class="spinner-grow text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="row text-center mb-3">
             <div class="col">
                 <button type="button" (click)="enviarRectificacion()">Enviar Rectificación</button>
