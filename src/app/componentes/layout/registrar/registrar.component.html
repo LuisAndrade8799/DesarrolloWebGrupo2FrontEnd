@@ -1,4 +1,5 @@
-<div class="d-flex flex-column">
+
+    <div class="d-flex flex-column">
     <div class="d-flex flex-row justify-content-center mb-3">
         <h2>Registro de Rectificación</h2>
     </div>
@@ -12,6 +13,87 @@
                 <input type="text" class="form-control" [(ngModel)]="expediente">
             </div>
         </div>
+        @if (this.matriculado) {
+            <div class="row mb-3">
+                <div class="col-2">
+                    <label class="form-label">Codigo del alumno</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control" value="{{this.matriculado.codigoAlumno}}" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2">
+                    <label class="form-label">Apelido paterno</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control" value="{{this.matriculado.apellidoPaterno}}" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2">
+                    <label class="form-label">Apellido materno</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control" value="{{this.matriculado.apellidoMaterno}}" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2">
+                    <label class="form-label">Nombres</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control" value="{{this.matriculado.nombreAlumno}}" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2">
+                    <label class="form-label">Año de ingreso</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control" value="{{this.matriculado.anioIngreso}}" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2">
+                    <label class="form-label">Correo alumno</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control" value="{{this.matriculado.correoAlumno}}" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2">
+                    <label class="form-label">Plan de estudio</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control" value="{{this.matriculado.codigoPlan}}" disabled>
+                </div>
+            </div>
+        }@else{
+            <div class="spinner-grow me-3 text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow me-3 text-secondary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow me-3 text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow me-3 text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow me-3 text-warning" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow me-3 text-info" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        }
+        
         <div class="row mb-3">
             <h2 class="">Cursos</h2>
         </div>
@@ -154,31 +236,39 @@
         <div class="row mb-3">
             <h2>Nuevo Curso</h2>
         </div>
-        
         <!-- Tabla para agregar un nuevo curso -->
         <div class="row">
             <table class="table table-bordered table-hover">
                 <thead class="text-center">
                     <tr>
-                        <th>Código</th>
-                        <th>Curso</th>
-                        <th>Sección</th>
+                        <th>Codigo de curso</th>
+                        <th>Nombre del curso</th>
+                        <th>Seccion 1</th>
+                        <th>Seccion 2</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider text-center">
                     <tr>
-                        <td><input type="text" class="form-control" [(ngModel)]="nuevoCurso.codigoCurso"></td>
-                        <td><input type="text" class="form-control" [(ngModel)]="nuevoCurso.nombreCurso"></td>
-                        <td><input type="text" class="form-control" [(ngModel)]="nuevoCurso.seccion"></td>
+                        <td><input type="text" class="form-control" [(ngModel)]="nuevoCurso.codigoCurso" disabled></td>
+                        <td>
+                            <select type="text" class="form-select" [(ngModel)]="nuevoCurso.nombreCurso" (click)="llenarCurso(nuevoCurso.nombreCurso)">
+                                @for(nombre of this.nombresCursos; track $index){
+                                    <option value="{{nombre.nombre}}">{{nombre.nombre}}</option>
+                                }
+                            </select>
+                        </td>
+                        <td><input type="text" class="form-control" [(ngModel)]="nuevoCurso.seccion1"></td>
+                        <td><input type="text" class="form-control" [(ngModel)]="nuevoCurso.seccion2"></td>
                         <td>
                             <button type="button" class="btn btn-primary" (click)="agregarNuevoCurso()">Agregar</button>
                         </td>
                     </tr>
                     <tr *ngFor="let cursoNuevo of cursosNuevos; let i = index">
-                        <td>{{ cursoNuevo.codigoCurso }}</td>
+                        <td>{{ cursoNuevo.codigo }}</td>
                         <td>{{ cursoNuevo.nombreCurso }}</td>
-                        <td>{{ cursoNuevo.seccion }}</td>
+                        <td>{{ cursoNuevo.nuevaSeccion }}</td>
+                        <td>{{ cursoNuevo.nuevaSeccion2 }}</td>
                         <td>
                             <button type="button" class="btn btn-danger" (click)="eliminarCurso(i)">Eliminar</button>
                         </td>

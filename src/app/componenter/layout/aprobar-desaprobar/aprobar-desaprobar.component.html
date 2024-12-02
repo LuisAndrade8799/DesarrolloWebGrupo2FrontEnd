@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider text-center">
-                    @for( ingreso of this.ingresos; track ingreso.codigoCurso){
+                    @for( ingreso of this.ingresos; track $index){
                     <tr>
                         <td>{{ingreso.numeroExpediente}}</td>
                         <td>{{ingreso.codigoAlumno}}</td>

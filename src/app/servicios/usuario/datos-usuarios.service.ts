@@ -39,4 +39,8 @@ export class DatosUsuariosService {
   retiro():Observable<any>{
     return this.http.get(this.apiUrl+'/retiro')
   }
+
+  nombresCurso():Observable<any>{
+    return this.http.get(this.apiUrl+'/obtenernombres')
+  }
 }

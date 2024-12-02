@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider text-center">
-                    @for(retiro of this.retiros; track retiro.codigo){
+                    @for(retiro of this.retiros; track $index){
                     <tr>
                         <td>{{retiro.numeroExpediente}}</td>
                         <td>{{retiro.codigoAlumno}}</td>
