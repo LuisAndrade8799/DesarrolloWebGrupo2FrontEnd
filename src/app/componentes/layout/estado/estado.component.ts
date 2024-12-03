@@ -42,7 +42,7 @@ export class EstadoComponent implements OnInit{
                 console.log("Error al listar retiro.")
               }
             }
-          )
+          );
         }
       );
     }

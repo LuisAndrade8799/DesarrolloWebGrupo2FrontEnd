@@ -52,4 +52,12 @@ export class DatosUsuariosService {
     return this.http.post(this.apiUrl+'/estadoRetiro',codigo)
   }
 
+  estadoIngreso2():Observable<any>{
+    return this.http.get(this.apiUrl+'/estadoIngreso2')
+  }
+
+  estadoRetiro2():Observable<any>{
+    return this.http.get(this.apiUrl+'/estadoRetiro2')
+  }
+
 }

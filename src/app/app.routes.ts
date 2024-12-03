@@ -8,6 +8,7 @@ import { EstadoComponent } from './componentes/layout/estado/estado.component';
 import { NavVicedecanoComponent } from './componentes/layout/nav-vicedecano/nav-vicedecano.component';
 import { AprobarDesaprobarComponent } from './componenter/layout/aprobar-desaprobar/aprobar-desaprobar.component';
 import { DesaprobarComponent } from './componentes/layout/desaprobar/desaprobar.component';
+import { ImprimirComponent } from './componentes/layout/imprimir/imprimir.component';
 
 export const routes: Routes = [
     {
@@ -52,6 +53,10 @@ export const routes: Routes = [
             {
                 path: 'desaprobar',
                 component: DesaprobarComponent
+            },
+            {
+                path: 'imprimir',
+                component: ImprimirComponent
             }
         ]
     }
