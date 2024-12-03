@@ -1,1 +1,83 @@
-<p>estado works!</p>
+<div class="container mt-5">
+    <!-- Primera tabla -->
+    <h2 class="text-center mb-4">Ingreso/Cambio</h2>
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Número Expediente</th>
+          <th>ID Matrícula</th>
+          <th>Código Alumno</th>
+          <th>ID Ingreso Cambio</th>
+          <th>Código Curso</th>
+          <th>Sección Actual</th>
+          <th>Opción 1</th>
+          <th>Opción 2</th>
+          <th>Motivo</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (ingreso of this.ingresos; track $index){
+          <tr>
+            <td>{{ingreso.numeroExpediente}}</td>
+            <td>{{ingreso.idMatricula}}</td>
+            <td>{{ingreso.codigoAlumno}}</td>
+            <td>{{ingreso.idIngresoCambio}}</td>
+            <td>{{ingreso.codigoCurso}}</td>
+            <td>{{ingreso.seccion}}</td>
+            <td>{{ingreso.ingresa1}}</td>
+            <td>{{ingreso.ingresa2}}</td>
+            <td>{{ingreso.observacion}}</td>
+            @if(ingreso.estado == null){
+              <td class="text-warning">Pendiente</td>
+            }@else if (ingreso.estado == 1) {
+              <td class="text-success">Aprobado</td>
+            }@else {
+              <td class="text-danger">Desaprobado</td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  
+    <!-- Espaciado entre tablas -->
+    <div class="my-5"></div>
+  
+    <!-- Segunda tabla -->
+    <h2 class="text-center mb-4">Retiro</h2>
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Número Expediente</th>
+          <th>ID Matrícula</th>
+          <th>Código Alumno</th>
+          <th>ID Retiro</th>
+          <th>Código Curso</th>
+          <th>Sección Actual</th>
+          <th>Motivo</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (retiro of this.retiros; track $index){
+          <tr>
+            <td>{{retiro.numeroExpediente}}</td>
+            <td>{{retiro.idMatricula}}</td>
+            <td>{{retiro.codigoAlumno}}</td>
+            <td>{{retiro.idRetiro}}</td>
+            <td>{{retiro.codigoCurso}}</td>
+            <td>{{retiro.retiro}}</td>
+            <td>{{retiro.observacion}}</td>
+            @if(retiro.estado == null){
+              <td class="text-warning">Pendiente</td>
+            }@else if (retiro.estado == 1) {
+              <td class="text-success">Aprobado</td>
+            }@else {
+              <td class="text-danger">Desaprobado</td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  

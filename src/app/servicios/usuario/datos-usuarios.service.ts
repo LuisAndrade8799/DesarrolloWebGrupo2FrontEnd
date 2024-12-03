@@ -43,4 +43,13 @@ export class DatosUsuariosService {
   nombresCurso():Observable<any>{
     return this.http.get(this.apiUrl+'/obtenernombres')
   }
+
+  estadoIngreso(codigo:any):Observable<any>{
+    return this.http.post(this.apiUrl+'/estadoIngreso',codigo)
+  }
+
+  estadoRetiro(codigo:any):Observable<any>{
+    return this.http.post(this.apiUrl+'/estadoRetiro',codigo)
+  }
+
 }
